@@ -1,9 +1,9 @@
+server:
+  port: 8001
+
 spring:
   application:
     name: eureka-demo
-
-server:
-  port: 8001
 
 eureka:
   instance:
