@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.lyscharlie.cloud.usercenter.controller.vo.UserVO;
 import com.lyscharlie.cloud.usercenter.biz.entity.UserDO;
 import com.lyscharlie.cloud.usercenter.biz.service.UserService;
+import com.lyscharlie.cloud.usercenter.controller.vo.UserVO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

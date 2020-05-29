@@ -27,7 +27,7 @@ public class SwaggerConfig {
 				.apiInfo(apiInfo())
 				.groupName("all")
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.lyscharlie.cloud.usercenter.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.lyscharlie.cloud.areacenter.controller"))
 				.paths(PathSelectors.any())
 				.build();
 	}

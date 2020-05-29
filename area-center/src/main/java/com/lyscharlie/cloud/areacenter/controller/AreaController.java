@@ -31,7 +31,7 @@ public class AreaController {
 	private AreaService areaService;
 
 	@ApiOperation(value = "中国省份列表")
-	@RequestMapping(value = "chinaList.php", method = RequestMethod.GET)
+	@RequestMapping(value = "chinaList", method = RequestMethod.GET)
 	public List<AreaVO> queryListForChina() {
 		List<AreaDO> list = this.areaService.list(Wrappers.<AreaDO>lambdaQuery().eq(AreaDO::getParentId, 1));
 		return convertToVO(list);
@@ -39,7 +39,7 @@ public class AreaController {
 
 	@ApiOperation(value = "查询省份下所有城市列表")
 	@ApiImplicitParam(name = "provinceId", value = "省份id", required = true, dataType = "Long", paramType = "form")
-	@PostMapping(value = "queryCityListByProvinceId.php")
+	@PostMapping(value = "queryCityListByProvinceId")
 	public List<AreaVO> queryCityListByProvinceId(@RequestParam(name = "provinceId") Long provinceId) {
 		List<AreaVO> resultList = null;
 		if (null == provinceId || provinceId < 1) {
