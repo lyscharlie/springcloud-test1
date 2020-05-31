@@ -1,2 +1,2 @@
 # springcloud-test1
-Eureka + Zuul + Ribbon + Hystrix
+Eureka + Zuul + Ribbon + Hystrix + Feign
