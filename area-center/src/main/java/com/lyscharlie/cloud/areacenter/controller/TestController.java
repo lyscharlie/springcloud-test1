@@ -35,7 +35,7 @@ public class TestController {
 	public List<UserVO> userList() {
 
 		try {
-			UserVO[] users = this.restTemplate.getForObject(this.userCenterUrl + "/userList", UserVO[].class);
+			UserVO[] users = this.restTemplate.getForObject(this.userCenterUrl + "/user/userList", UserVO[].class);
 			return Arrays.asList(users);
 		} catch (RestClientException e) {
 			log.error("TestController.userList", e);

@@ -49,7 +49,7 @@ public class TestController {
 			map.add("provinceId", provinceId);
 			HttpEntity requestBody = new HttpEntity(map, headers);
 
-			AreaVO[] areas = this.restTemplate.postForObject(this.areaCenterUrl + "/queryCityListByProvinceId", requestBody, AreaVO[].class);
+			AreaVO[] areas = this.restTemplate.postForObject(this.areaCenterUrl + "/area/queryCityListByProvinceId", requestBody, AreaVO[].class);
 			return Arrays.asList(areas);
 		} catch (RestClientException e) {
 			log.error("TestController.queryCityListByProvinceId", e);
