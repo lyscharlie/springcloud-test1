@@ -13,6 +13,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.lyscharlie.cloud.areacenter.controller.vo.UserVO;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,6 +31,7 @@ public class TestController {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	@HystrixCommand(fallbackMethod = "userListFallback")
 	@ApiOperation(value = "用户列表")
 	@GetMapping(value = "userList")
 	public List<UserVO> userList() {
@@ -41,6 +43,11 @@ public class TestController {
 			log.error("TestController.userList", e);
 			return new ArrayList<>();
 		}
+	}
+
+	public List<UserVO> userListFallback() {
+		log.warn("run userListFallback");
+		return new ArrayList<>();
 	}
 
 }

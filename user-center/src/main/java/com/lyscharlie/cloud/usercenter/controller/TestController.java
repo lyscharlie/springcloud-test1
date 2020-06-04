@@ -19,6 +19,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.lyscharlie.cloud.usercenter.controller.vo.AreaVO;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -37,6 +38,7 @@ public class TestController {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	@HystrixCommand(fallbackMethod = "queryCityListByProvinceIdFallback")
 	@ApiOperation(value = "查询省份下所有城市列表")
 	@ApiImplicitParam(name = "provinceId", value = "省份id", required = true, dataType = "Long", paramType = "form")
 	@PostMapping(value = "queryCityListByProvinceId")
@@ -55,6 +57,11 @@ public class TestController {
 			log.error("TestController.queryCityListByProvinceId", e);
 			return new ArrayList<>();
 		}
+	}
+
+	public List<AreaVO> queryCityListByProvinceIdFallback(Long provinceId) {
+		log.warn("run queryCityListByProvinceIdFallback");
+		return new ArrayList<>();
 	}
 
 }
