@@ -6,6 +6,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +43,13 @@ public class TestController {
 	public List<AreaVO> queryCityListByProvinceId(@RequestParam("provinceId") Long provinceId) {
 
 		try {
-			AreaVO[] areas = this.restTemplate.postForObject(this.areaCenterUrl + "/queryCityListByProvinceId", provinceId, AreaVO[].class);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+			MultiValueMap map = new LinkedMultiValueMap();
+			map.add("provinceId", provinceId);
+			HttpEntity requestBody = new HttpEntity(map, headers);
+
+			AreaVO[] areas = this.restTemplate.postForObject(this.areaCenterUrl + "/queryCityListByProvinceId", requestBody, AreaVO[].class);
 			return Arrays.asList(areas);
 		} catch (RestClientException e) {
 			log.error("TestController.queryCityListByProvinceId", e);

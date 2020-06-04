@@ -30,7 +30,11 @@ eureka:
       defaultZone: http://127.0.0.1:8001/eureka
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}-${server.port}
 
 myspcloud:
   areaCenter:
-    url: http://127.0.0.1:8082/area
+    url: http://AREA-CENTER
