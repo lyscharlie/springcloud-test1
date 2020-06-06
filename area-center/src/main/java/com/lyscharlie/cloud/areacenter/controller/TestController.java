@@ -48,7 +48,6 @@ public class TestController {
 		}
 	}
 
-	@HystrixCommand(fallbackMethod = "userListFallback")
 	@ApiOperation(value = "用户列表(feign)")
 	@GetMapping(value = "userListByFeign")
 	public List<UserVO> userListByFeign() {

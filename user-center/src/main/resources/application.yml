@@ -35,6 +35,16 @@ eureka:
     ip-address: 127.0.0.1
     instance-id: ${spring.application.name}-${server.port}
 
+#开启熔断
+feign:
+  hystrix:
+    enabled: true
+
+#设置ribbon负载策略
+area-center:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule
+
 myspcloud:
   areaCenter:
     url: http://AREA-CENTER

@@ -63,7 +63,6 @@ public class TestController {
 		}
 	}
 
-	@HystrixCommand(fallbackMethod = "queryCityListByProvinceIdFallback")
 	@ApiOperation(value = "查询省份下所有城市列表(feign)")
 	@ApiImplicitParam(name = "provinceId", value = "省份id", required = true, dataType = "Long", paramType = "form")
 	@PostMapping(value = "queryCityListByProvinceIdFeign")

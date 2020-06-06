@@ -22,11 +22,16 @@ public class CloudConfig {
 		return new RestTemplate();
 	}
 
+	/**
+	 * 自定义ribbon策略
+	 *
+	 * @return
+	 */
 	@Bean
 	public IRule myRule() {
-		//return new RoundRobinRule();
-		//return new RandomRule();//达到的目的，用我们重新选择的随机算法替代默认的轮询。
-		return new RetryRule();  //在这里选择负载均衡算法
+		//return new RoundRobinRule(); // 线性轮询
+		//return new RandomRule(); //随机算法
+		return new RetryRule();  //负载均衡算法
 	}
 
 }
