@@ -9,7 +9,7 @@ import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RetryRule;
 
 @Configuration
-public class RestTemplateConfig {
+public class CloudConfig {
 
 	/**
 	 * 向Spring容器中定义RestTemplate对象

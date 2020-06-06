@@ -13,6 +13,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.lyscharlie.cloud.areacenter.controller.vo.UserVO;
+import com.lyscharlie.cloud.areacenter.feign.UserFeignClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import io.swagger.annotations.Api;
@@ -31,11 +32,13 @@ public class TestController {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	@Autowired
+	private UserFeignClient userFeignClient;
+
 	@HystrixCommand(fallbackMethod = "userListFallback")
 	@ApiOperation(value = "用户列表")
 	@GetMapping(value = "userList")
 	public List<UserVO> userList() {
-
 		try {
 			UserVO[] users = this.restTemplate.getForObject(this.userCenterUrl + "/user/userList", UserVO[].class);
 			return Arrays.asList(users);
@@ -43,6 +46,13 @@ public class TestController {
 			log.error("TestController.userList", e);
 			return new ArrayList<>();
 		}
+	}
+
+	@HystrixCommand(fallbackMethod = "userListFallback")
+	@ApiOperation(value = "用户列表(feign)")
+	@GetMapping(value = "userListByFeign")
+	public List<UserVO> userListByFeign() {
+		return this.userFeignClient.userList();
 	}
 
 	public List<UserVO> userListFallback() {
