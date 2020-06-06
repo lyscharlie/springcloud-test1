@@ -1,0 +1,27 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: zuul-api
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}-${server.port}
+
+zuul:
+  prefix: /api
+  routes:
+    user-center:
+      path: /app-user/**
+      serviceid: user-center
+    area-center:
+      path: /app-area/**
+      serviceid: area-center
